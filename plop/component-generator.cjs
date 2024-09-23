@@ -21,6 +21,15 @@ module.exports = function (plop) {
         },
       },
       {
+        type: 'rawlist',
+        name: 'styles',
+        message: 'Styled-Component ou CSS?',
+        choices: ['Styled-Component', 'CSS'],
+        filter(val) {
+          return val == 'CSS' ? 'css' : 'styled'
+        },
+      },
+      {
         type: 'input',
         name: 'name',
         message: 'Nome do Componente',
@@ -34,17 +43,33 @@ module.exports = function (plop) {
         path: `./src/components/{{name}}/index.{{language}}x`,
         templateFile: './plop/{{framework}}/component-index-template.hbs',
       })
-      actions.push({
-        type: 'add',
-        path: `./src/components/{{name}}/{{name}}.{{language}}x`,
-        templateFile:
-          './plop/{{framework}}/component-name-template-{{language}}.hbs',
-      })
-      actions.push({
-        type: 'add',
-        path: `./src/components/{{name}}/{{name}}.styles.{{language}}x`,
-        templateFile: './plop/{{framework}}/component-styles-template.hbs',
-      })
+
+      if (data.styles == 'styled') {
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}.{{language}}x`,
+          templateFile:
+            './plop/{{framework}}/component-name-template-{{language}}.hbs',
+        })
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}.styles.{{language}}x`,
+          templateFile: './plop/{{framework}}/component-styles-template.hbs',
+        })
+      } else {
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}.{{language}}x`,
+          templateFile:
+            './plop/{{framework}}/component-name-template-{{language}}-css.hbs',
+        })
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}-styles.css`,
+          templateFile:
+            './plop/{{framework}}/component-styles-template-css.hbs',
+        })
+      }
 
       if (data.language == 'ts') {
         actions.push({

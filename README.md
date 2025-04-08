@@ -3,5 +3,5 @@
 https://github.com/plopjs/plop
 
 TODO
-[] - Add css modules option
-[] - Convert to a NPM package
+[ ] - Add css modules option
+[ ] - Convert to a NPM package

@@ -1,6 +1,6 @@
 {
   "name": "drzanuff-plop-generator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Gerador de componentes React usando Plop.js",
   "main": "plopfile.cjs",
   "scripts": {

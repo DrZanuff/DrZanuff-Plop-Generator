@@ -23,10 +23,12 @@ module.exports = function (plop) {
       {
         type: 'rawlist',
         name: 'styles',
-        message: 'Styled-Component ou CSS?',
-        choices: ['Styled-Component', 'CSS'],
+        message: 'Estilo: Styled-Components, CSS ou CSS Modules?',
+        choices: ['Styled-Components', 'CSS', 'CSS Modules'],
         filter(val) {
-          return val == 'CSS' ? 'css' : 'styled'
+          if (val === 'Styled-Components') return 'styled'
+          if (val === 'CSS') return 'css'
+          return 'cssModule'
         },
       },
       {
@@ -55,6 +57,19 @@ module.exports = function (plop) {
           type: 'add',
           path: `./src/components/{{name}}/{{name}}.styles.{{language}}x`,
           templateFile: './plop/{{framework}}/component-styles-template.hbs',
+        })
+      } else if (data.styles === 'cssModule') {
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}.{{language}}x`,
+          templateFile:
+            './plop/react/component-name-template-{{language}}-cssmodule.hbs',
+        })
+        actions.push({
+          type: 'add',
+          path: `./src/components/{{name}}/{{name}}-styles.module.css`,
+          templateFile:
+            './plop/react/component-styles-template-cssmodule.hbs',
         })
       } else {
         actions.push({

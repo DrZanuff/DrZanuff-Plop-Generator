@@ -1,13 +1,19 @@
 {
   "name": "drzanuff-plop-generator",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Gerador de componentes React usando Plop.js",
+  "main": "plopfile.cjs",
   "scripts": {
     "plop": "plop"
   },
+  "keywords": ["plop", "react", "generator", "componentes", "cli"],
+  "author": "Ricardo Machado ricardo.machado.nwi@gmail.com",
+  "license": "MIT",
   "dependencies": {
-  },
-  "devDependencies": {
     "plop": "^3.0.5"
-  }
+  },
+  "files": [
+  "plop/",
+  "plopfile.cjs"
+  ]
 }
